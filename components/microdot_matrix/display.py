@@ -1,5 +1,6 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
+from esphome.const import __version__ as ESPHOME_VERSION
 
 from esphome.components import display
 from esphome.components import i2c
