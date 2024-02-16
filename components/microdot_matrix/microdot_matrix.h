@@ -11,9 +11,16 @@ class MicrodotMatrix;
 
 using microdot_writer_t = std::function<void(MicrodotMatrix &)>;
 
+#if ESPHOME_VERSION_CODE >= VERSION_CODE(2023, 12, 0)
+class MicrodotMatrix: 
+                      public display::DisplayBuffer,
+                      public i2c::I2CDevice {
+#else
 class MicrodotMatrix: public PollingComponent,
                       public display::DisplayBuffer,
                       public i2c::I2CDevice {
+#endif  // VERSION_CODE(2023, 12, 0)
+
 public:
   void set_writer(microdot_writer_t &&writer) { this->writer_local_ = writer; };
 
